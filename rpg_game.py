@@ -372,6 +372,10 @@ def main():
     area3 = False
     area4_fight1 = False
     area4_fight2 = False
+    enemy1 = goblin
+    enemy3 = shadow
+    enemy4 = character_select("random", hero_list)
+    enemy5 = zombie
     while player.alive() and player_position < 6:
         while player_position == 0:
             if area0 == False:
@@ -418,12 +422,11 @@ def main():
                     player_position += 1
         while player_position == 1:
             if area1 == False:
-                enemy = goblin
                 print("The guard heard all the commotion and running towards you!")
                 print("Goblin Guard: What are you doing?")
                 print("Goblin Guard: I just saw all of that from behind the desk!")
                 print()
-                win = combat(player, enemy)
+                win = combat(player, enemy1)
                 if win == True:
                     area1 = True
                     player_position +=1
@@ -465,11 +468,9 @@ def main():
                 print("You did nothing")
         while player_position == 3:
             if area3 == False:
-                enemy = shadow
-                print(enemy.health)
                 print("silence overcomes you!")
                 print()
-                win = combat(player, enemy)
+                win = combat(player, enemy3)
                 if win == True:
                     area3 = True
                 else:
@@ -485,11 +486,9 @@ def main():
                     player_position = 2
                     print("moved back to 2")
         while player_position == 4:
-            enemy1 = character_select("random", hero_list) #random_select("enemy1")
-            enemy2 = zombie
             while area4_fight1 == False:
-                while enemy1.alive():
-                    win = combat(player, enemy1)
+                while enemy4.alive():
+                    win = combat(player, enemy4)
                     if win == True:
                         area4_fight1 = True
                     else:
@@ -498,9 +497,9 @@ def main():
                 break
             if area4_fight1 == True:
                 while area4_fight2 == False:
-                    while enemy2.alive():
+                    while enemy5.alive():
                         print("A grunting zombie lunges at you!")
-                        win = combat(player, enemy2)
+                        win = combat(player, enemy5)
                         if win == True:
                             area4_fight2 = True
                             player_position += 1
