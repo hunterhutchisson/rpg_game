@@ -365,7 +365,7 @@ def main():
     print()
     print(f"Old Man: Ah you're a {player.name}. I should've known.")
     print()
-    player_position = 2
+    player_position = 0
     area0 = False
     area1 = False
     area2 = False
