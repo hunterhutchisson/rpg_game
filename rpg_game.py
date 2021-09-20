@@ -214,7 +214,7 @@ goblin = Goblin("Goblin", 8, 4, 10, 20, 5, 5, [], 8, False, [])
 hero = Hero("Hero", 10, 4, 5, 20, 5, 5, [], 6, False, [])
 zombie = Zombie("Zombie", 1 , 1, 0, 0, 0, 5, [], 6, False, [])
 medic = Medic("Medic", 11, 3, 5, 20, 3, 5, [], 6, False, [])
-shadow = Shadow("Shadow", 1, 3, 15, 20, 0, 5, [], 15, False, [])
+shadow = Shadow("Shadow", 1, 2, 15, 20, 0, 5, [], 15, False, [])
 mirror = Mirror("Mirror", 10, 2, 10, 20, 5, 5, [], 6, False, [])
 static = Static("Static", 9, 2, 8, 18, 5, 5, [], 6, False, [])
 
