@@ -6,7 +6,7 @@
 import random
 
 class Character:
-    def __init__(self, name, health, power, dodge, perception, armor, money, inventory, bounty, player_status):
+    def __init__(self, name, health, power, dodge, perception, armor, money, inventory, bounty, player_status, special_inventory):
         self.name = name
         self.health = health
         self.power = power
@@ -17,6 +17,7 @@ class Character:
         self.inventory = inventory
         self.bounty = bounty
         self.player_status = player_status
+        self.special_inventory =special_inventory
 
     def attack(self, opposite):
         opposite.miss_me()
@@ -69,7 +70,7 @@ class Character:
                     self.dodge += item.points
             del self.inventory[item_index_to_use]
         else:
-            print("You are out of items.")
+            print("You are out of items.\n")
     
     def miss_me(self):
         self.dodging = False
@@ -208,14 +209,14 @@ store2.add_Items("supertonic", "healing", 10, 3)
 store2.add_Items("Regular Armor", "armor", 10, 10)
 store2.add_Items("Evasion Potion", "dodge", 2, 5)
 
-# name, health, power, dodge, perception, armor, money, inventory, bounty, player_status
-goblin = Goblin("Goblin", 8, 4, 10, 20, 5, 5, [], 8, False)
-hero = Hero("Hero", 10, 4, 5, 20, 5, 5, [], 6, False)
-zombie = Zombie("Zombie", 1 , 1, 0, 0, 0, 5, [], 6, False)
-medic = Medic("Medic", 11, 3, 5, 20, 3, 5, [], 6, False)
-shadow = Shadow("Shadow", 1, 3, 15, 20, 0, 5, [], 15, False)
-mirror = Mirror("Mirror", 10, 2, 10, 20, 5, 5, [], 6, False)
-static = Static("Static", 9, 2, 8, 18, 5, 5, [], 6, False)
+# name, health, power, dodge, perception, armor, money, inventory, bounty, player_status, special_inventory
+goblin = Goblin("Goblin", 8, 4, 10, 20, 5, 5, [], 8, False, [])
+hero = Hero("Hero", 10, 4, 5, 20, 5, 5, [], 6, False, [])
+zombie = Zombie("Zombie", 1 , 1, 0, 0, 0, 5, [], 6, False, [])
+medic = Medic("Medic", 11, 3, 5, 20, 3, 5, [], 6, False, [])
+shadow = Shadow("Shadow", 1, 3, 15, 20, 0, 5, [], 15, False, [])
+mirror = Mirror("Mirror", 10, 2, 10, 20, 5, 5, [], 6, False, [])
+static = Static("Static", 9, 2, 8, 18, 5, 5, [], 6, False, [])
 
 character_lst = [goblin, hero, medic, mirror, static, shadow]
 hero_list = [hero, medic, mirror, static]
@@ -381,7 +382,7 @@ def main():
                 if direction == "1":
                     print("The padlock keeping the gate the gate locked seems 100 years old and could break with a mild breeze.")
                     print("Perhaps something around you could break it.\n")
-                    if stone in player.inventory:
+                    if stone in player.special_inventory:
                         print("You have a stone in your inventory, do you want to try to break the lock?")
                         yes_or_no = yes_no()
                         if yes_or_no == True:
@@ -398,7 +399,7 @@ def main():
                     print("Do you want to take it?")
                     yes_or_no = yes_no()
                     if yes_or_no == True:
-                        player.inventory.append(stone)
+                        player.special_inventory.append(stone)
                         print("Stone added to inventory!")
                 else:
                     print(f"Invalid input {direction}")
