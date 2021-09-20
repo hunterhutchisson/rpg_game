@@ -57,18 +57,21 @@ class Character:
                 print(f"{number}: {item.name} - {item.points} {item.quality} points")
                 number += 1
             item_index_to_use = int(input("Which item would you like to use: ")) - 1
-            item = self.inventory[item_index_to_use]
-            if item.quality == "healing":
-                self.health += item.points
-                print(f"health increase {item.points}")
-            if item.quality == "armor":
-                self.armor += item.points
-            if item.quality == "dodge":
-                if item.points + self.dodge >= 18:
-                    self.dodge = 18
-                else:
-                    self.dodge += item.points
-            del self.inventory[item_index_to_use]
+            if item_index_to_use in range(len(self.inventory)):
+                item = self.inventory[item_index_to_use]
+                if item.quality == "healing":
+                    self.health += item.points
+                    print(f"health increase {item.points}")
+                if item.quality == "armor":
+                    self.armor += item.points
+                if item.quality == "dodge":
+                    if item.points + self.dodge >= 18:
+                        self.dodge = 18
+                    else:
+                        self.dodge += item.points
+                del self.inventory[item_index_to_use]
+            else:
+                print("Invalid Selection, no item used.")
         else:
             print("You are out of items.\n")
     
@@ -205,9 +208,9 @@ store1.add_Items("supertonic", "healing", 8, 3)
 store1.add_Items("Regular Armor", "armor", 10, 5)
 store1.add_Items("Evasion Potion", "dodge", 4, 10)
 store2 = Store("Battle Store")
-store2.add_Items("supertonic", "healing", 10, 3)
-store2.add_Items("Regular Armor", "armor", 10, 10)
-store2.add_Items("Evasion Potion", "dodge", 2, 5)
+store2.add_Items("supertonic", "healing", 8, 3)
+store2.add_Items("Regular Armor", "armor", 10, 5)
+store2.add_Items("Evasion Potion", "dodge", 4, 10)
 
 # name, health, power, dodge, perception, armor, money, inventory, bounty, player_status, special_inventory
 goblin = Goblin("Goblin", 8, 4, 10, 20, 5, 5, [], 8, False, [])
@@ -352,7 +355,7 @@ def yes_no():
     return yes
 
 def main():
-    print("You open you're eyes to see an old man sitting on a bench.")
+    print("You open your eyes to see an old man sitting on a bench.")
     print("You look around quickly and realize you're in a jail cell")
     print("Old Man: You've been knocked out for awhile.")
     print("Old Man: Who did you say you were again.")
@@ -362,7 +365,7 @@ def main():
     print()
     print(f"Old Man: Ah you're a {player.name}. I should've known.")
     print()
-    player_position = 0
+    player_position = 2
     area0 = False
     area1 = False
     area2 = False
@@ -427,6 +430,7 @@ def main():
                 else:
                     player_position -= 1
             else:
+                print("You are standing over the guards dead body.")
                 move = input("1: Move forward\n2: Move backward\n>")
                 print()
                 if move == "1":
@@ -495,6 +499,7 @@ def main():
             if area4_fight1 == True:
                 while area4_fight2 == False:
                     while enemy2.alive():
+                        print("A grunting zombie lunges at you!")
                         win = combat(player, enemy2)
                         if win == True:
                             area4_fight2 = True
