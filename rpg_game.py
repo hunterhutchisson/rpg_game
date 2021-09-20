@@ -200,9 +200,9 @@ class Item(Store):
         self.cost = cost
 stone = Item("stone", "special", 2, 0)
 store1 = Store("Old Man Store")
-store1.add_Items("supertonic", "healing", 10, 3)
-store1.add_Items("Regular Armor", "armor", 10, 10)
-store1.add_Items("Evasion Potion", "dodge", 2, 5)
+store1.add_Items("supertonic", "healing", 8, 3)
+store1.add_Items("Regular Armor", "armor", 10, 5)
+store1.add_Items("Evasion Potion", "dodge", 4, 10)
 store2 = Store("Battle Store")
 store2.add_Items("supertonic", "healing", 10, 3)
 store2.add_Items("Regular Armor", "armor", 10, 10)
